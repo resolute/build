@@ -1,5 +1,5 @@
 {
-    "name": "build",
+    "name": "@resolute/build",
     "version": "1.0.0",
     "description": "Build process",
     "main": "lib",
