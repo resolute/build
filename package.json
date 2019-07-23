@@ -1,0 +1,83 @@
+{
+    "name": "build",
+    "version": "1.0.0",
+    "description": "Build process",
+    "main": "lib",
+    "types": "lib",
+    "bin": {
+        "build": "lib"
+    },
+    "scripts": {
+        "build": "npm run install && npx tsc",
+        "release": "npx np",
+        "prepublishOnly": "npm run build",
+        "install": "[ -e node_modules ] || npm install --no-save"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/resolute/build.git"
+    },
+    "bugs": {
+        "url": "https://github.com/resolute/build/issues"
+    },
+    "homepage": "https://github.com/resolute/build",
+    "author": "Resolute Digital",
+    "engines": {
+        "node": ">=10.0.0"
+    },
+    "dependencies": {
+        "@babel/core": "*",
+        "@babel/polyfill": "*",
+        "@babel/preset-env": "*",
+        "autoprefixer": "*",
+        "builtin-modules": "*",
+        "core-js": "*",
+        "esm": "*",
+        "fast-glob": "*",
+        "htmlmin": "*",
+        "juice": "*",
+        "marked": "*",
+        "marko": "*",
+        "mkdirp": "*",
+        "node-sass": "*",
+        "postcss": "*",
+        "probe-image-size": "*",
+        "rollup-plugin-babel": "*",
+        "rollup-plugin-commonjs": "*",
+        "rollup-plugin-json": "*",
+        "rollup-plugin-node-resolve": "*",
+        "rollup-plugin-sourcemaps": "*",
+        "rollup-plugin-typescript": "*",
+        "rollup": "*",
+        "sane": "*",
+        "svgo": "*",
+        "ts-node": "*",
+        "tslib": "*",
+        "typescript": "*",
+        "uglify-es": "*",
+        "whatwg-fetch": "*"
+    },
+    "devDependencies": {
+        "@types/autoprefixer": "*",
+        "@types/marko": "*",
+        "@types/node-sass": "*",
+        "@types/node": "*",
+        "@types/rollup-plugin-json": "*",
+        "@types/sane": "*",
+        "@types/svgo": "*",
+        "@types/uglify-es": "*",
+        "np": "*"
+    },
+    "files": [
+        "lib"
+    ],
+    "keywords": [
+        "build tool",
+        "minify",
+        "static site generator"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "license": "ISC"
+}
