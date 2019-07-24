@@ -5,7 +5,7 @@
     "main": "lib",
     "types": "lib",
     "bin": {
-        "build": "lib"
+        "build": "bin/build"
     },
     "scripts": {
         "build": "npm run install && npx tsc",
@@ -38,10 +38,8 @@
         "juice": "*",
         "marked": "*",
         "marko": "*",
-        "mkdirp": "*",
         "node-sass": "*",
         "postcss": "*",
-        "probe-image-size": "*",
         "rollup-plugin-babel": "*",
         "rollup-plugin-commonjs": "*",
         "rollup-plugin-json": "*",

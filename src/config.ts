@@ -1,12 +1,12 @@
 import fs from 'fs';
 import util from 'util';
-import tsNode from 'ts-node';
+import { register } from 'ts-node';
 
 import { deleteRequireCache } from './util';
 
-// Node.js can require() `.ts` files
-if (typeof tsNode !== 'undefined') {
-    tsNode.register({
+if (Object.keys(require.extensions).indexOf('.ts') === -1) {
+    // Node.js can require() `.ts` files
+    register({
         project: `${process.cwd()}/tsconfig.json`
     });
 }
@@ -28,7 +28,7 @@ const config = () => Promise.all([
             deleteRequireCache(new RegExp(file + '$'));
         })
         if (files.length === 0) {
-            throw 'no config found, using default';
+            throw 'no config found, using defaults';
         }
         return files[0];
 
