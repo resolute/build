@@ -33,13 +33,13 @@ const js = ([config]) => each(['*.js', '*.ts'], { cwd: config.jsDir }, ({ file, 
                 ]
 
             }),
+            resolve({
+                mainFields: ['module', 'main', 'main:jsnext'],
+                browser: true,
+                preferBuiltins: false
+            }),
+            commonjs(),
             ...(config.legacy.test(file) ? [
-                resolve({
-                    mainFields: ['module', 'main', 'main:jsnext'],
-                    browser: true,
-                    preferBuiltins: false
-                }),
-                commonjs(),
                 babel({
                     presets: [
                         ['@babel/env', {
