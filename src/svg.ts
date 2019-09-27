@@ -1,7 +1,7 @@
 import svgo from 'svgo';
 import { each } from './util';
 
-const svg = ([config]) => each('**/*.svg', { cwd: config.svgDir }, ({ file, content }): Promise<[string, {
+const svg = ([config]) => each('**/*.svg', { cwd: config.build.svgDir }, ({ file, content }): Promise<[string, {
     raw: string;
     urlEncoded: string;
 }]> => new svgo({

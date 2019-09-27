@@ -4,11 +4,11 @@ import util from 'util';
 const readFile = util.promisify(fs.readFile);
 const writeFile = util.promisify(fs.writeFile);
 
-const assets = ([config, js, css]) => readFile(`${config.etcDir}/assets.json`)
+const assets = ([config, js, css]) => readFile(`${config.build.etcDir}/assets.json`)
     .then(raw => JSON.parse(raw.toString()))
     .then(async (assets) => {
         for (const [key, val] of Object.entries(assets)) {
-            if (config.inline.test(key)) {
+            if (config.build.inline.test(key)) {
                 assets[key] = new String(val);
                 assets[key].inline = true;
             }
@@ -21,7 +21,7 @@ const assets = ([config, js, css]) => readFile(`${config.etcDir}/assets.json`)
         ...js,
         ...css
     }))
-    .then(assets => writeFile(`${config.etcDir}/assets.json`, JSON.stringify(assets, null, 4))
+    .then(assets => writeFile(`${config.build.etcDir}/assets.json`, JSON.stringify(assets, null, 4))
         .then(() => assets)); // prevent double writing? TODO: investigate race condition
 
 export default assets;

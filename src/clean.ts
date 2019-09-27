@@ -18,12 +18,12 @@ const clean = ([config, assets]) => {
         })
         .filter(unique);
     // TODO: we _could_ simply return Promise.resolve(assets) and let this run async
-    return glob(patterns, { cwd: config.webDir })
+    return glob(patterns, { cwd: config.build.webDir })
         .then(files => Promise.all(files
             // remove any of the just generated hash matches
             .filter(file => preserve.indexOf((file.match(regex) || [])[2]) === -1)
             // hydrate array of files with modified time stat
-            .map(file => unlink(`${config.webDir}/${file}`))
+            .map(file => unlink(`${config.build.webDir}/${file}`))
         ))
         .then(() => assets);
 };

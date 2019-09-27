@@ -6,7 +6,7 @@ import { each, hash } from './util';
 
 const sassRender = util.promisify(sass.render);
 
-const css = ([config, svg]) => each('*.scss', { cwd: config.cssDir, ignore: ['_*.scss'] },
+const css = ([config, svg]) => each('*.scss', { cwd: config.build.cssDir, ignore: ['_*.scss'] },
     ({ file, content, base }) => sassRender({
         data: content.toString(),
         includePaths: [base],
@@ -36,7 +36,7 @@ const css = ([config, svg]) => each('*.scss', { cwd: config.cssDir, ignore: ['_*
         .then(({ css }) => postcss([autoprefixer({ overrideBrowserslist: ['last 2 versions'] })])
             .process(css, { from: undefined }))
         .then(({ css }) => css.replace(/\n/g, '')) // remove any left over newlines
-        .then((css) => hash(file, css, 'css', `${config.webDir}/css`, config.inline.test(file)))
+        .then((css) => hash(file, css, 'css', `${config.build.webDir}/css`, config.build.inline.test(file)))
 ).then(arr => arr.reduce((acc, i) => ({ ...acc, ...i }), {})); // array of objects to single object
 
 export default css;

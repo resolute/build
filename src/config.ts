@@ -36,30 +36,33 @@ const config = () => Promise.all([
     .then((file) => import(`${process.cwd()}/${file}`))
     .catch((error) => {
         console.error(error);
-        throw error;
+        // throw error;
         return {};
     })
     // .catch(() => ({}))
     // .then((debug) => (console.log(debug), debug))
-    .then(({ build }) => ({
-        // write every template file.marko to file.html
-        html: /NOTHING/,
-        // inline matching assets as <script>, <style> in templates
-        inline: /NOTHING/,
-        // use Babel on any file matching file-legacy.js
-        legacy: /-legacy/,
-        name: '',
-        appDir: 'app',
-        etcDir: 'etc',
-        libDir: 'lib',
-        svgDir: 'svg',
-        tplDir: 'tpl',
-        webDir: 'web',
-        cssDir: 'css',
-        jsDir: 'js',
-        htmlDir: 'web/html',
-        ...build
-    }))
+    .then((config = {}) => {
+        config.build = {
+            // write every template file.marko to file.html
+            html: /NOTHING/,
+            // inline matching assets as <script>, <style> in templates
+            inline: /NOTHING/,
+            // use Babel on any file matching file-legacy.js
+            legacy: /-legacy/,
+            name: '',
+            appDir: 'app',
+            etcDir: 'etc',
+            libDir: 'lib',
+            svgDir: 'svg',
+            tplDir: 'tpl',
+            webDir: 'web',
+            cssDir: 'css',
+            jsDir: 'js',
+            htmlDir: 'web/html',
+            ...config.build
+        };
+        return config;
+    })
     // Allow config to posses top level promises that will be resolved
     .then((config) => Promise.all(Object.entries(config)
         .map(([key, val]) => {

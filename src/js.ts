@@ -7,7 +7,7 @@ import json from 'rollup-plugin-json';
 import typescript from 'rollup-plugin-typescript';
 import { each, hash } from './util';
 
-const js = ([config]) => each(['*.js', '*.ts'], { cwd: config.jsDir }, ({ file, base }) =>
+const js = ([config]) => each(['*.js', '*.ts'], { cwd: config.build.jsDir }, ({ file, base }) =>
     rollup({
         input: base + '/' + file,
         plugins: [
@@ -39,7 +39,7 @@ const js = ([config]) => each(['*.js', '*.ts'], { cwd: config.jsDir }, ({ file, 
                 preferBuiltins: false
             }),
             commonjs(),
-            ...(config.legacy.test(file) ? [
+            ...(config.build.legacy.test(file) ? [
                 babel({
                     presets: [
                         ['@babel/env', {
@@ -56,7 +56,7 @@ const js = ([config]) => each(['*.js', '*.ts'], { cwd: config.jsDir }, ({ file, 
         .then((rollup) => rollup.generate({
             format: 'es',
             intro: (
-                config.legacy.test(file) ?
+                config.build.legacy.test(file) ?
                     '(function (window, document) {\n"use strict";' :
                     '(async (window, document) => {\n'
             ),
@@ -69,7 +69,7 @@ const js = ([config]) => each(['*.js', '*.ts'], { cwd: config.jsDir }, ({ file, 
             compress: { toplevel: true, hoist_props: true, passes: 4 },
             mangle: { toplevel: true }
         }))
-        .then(({ code }) => hash(file, code, 'js', `${config.webDir}/js`, config.inline.test(file)))
+        .then(({ code }) => hash(file, code, 'js', `${config.build.webDir}/js`, config.build.inline.test(file)))
 ).then(arr => arr.reduce((acc, i) => ({ ...acc, ...i }), {})); // array of objects to single object
 
 export default js;

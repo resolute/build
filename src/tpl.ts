@@ -6,7 +6,7 @@ import markoNodeRequire from 'marko/node-require';
 markoNodeRequire.install();
 markoHotReload.enable({ silent: true });
 
-const tpl = ([config]) => glob(config.tplDir + '/**/*.marko')
+const tpl = ([config]) => glob(config.build.tplDir + '/**/*.marko')
     .then(files => files.map(file => {
         markoHotReload.handleFileModified(`${process.cwd()}/${file}`, { silent: true });
         const template = require(`${process.cwd()}/${file}`);
