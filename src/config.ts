@@ -40,7 +40,8 @@ const config = () => Promise.all([
         return {};
     })
     // .catch(() => ({}))
-    .then((config) => ({
+    // .then((debug) => (console.log(debug), debug))
+    .then(({ build }) => ({
         // write every template file.marko to file.html
         html: /NOTHING/,
         // inline matching assets as <script>, <style> in templates
@@ -57,7 +58,7 @@ const config = () => Promise.all([
         cssDir: 'css',
         jsDir: 'js',
         htmlDir: 'web/html',
-        ...config
+        ...build
     }))
     // Allow config to posses top level promises that will be resolved
     .then((config) => Promise.all(Object.entries(config)
