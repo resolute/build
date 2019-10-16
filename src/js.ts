@@ -19,7 +19,7 @@ const js = ([config]) => each(['*.js', '*.ts'], { cwd: config.build.jsDir }, ({ 
                 "baseUrl": ".",
                 "resolveJsonModule": true,
                 "moduleResolution": "node",
-                "target": "esnext",
+                "target": config.build.legacy.test(file) ? "es5" : "esnext",
                 "module": "esnext",
                 "lib": ["esnext", "dom", "DOM.Iterable", "ScriptHost"],
                 "strict": false,
@@ -44,7 +44,7 @@ const js = ([config]) => each(['*.js', '*.ts'], { cwd: config.build.jsDir }, ({ 
                     presets: [
                         ['@babel/env', {
                             modules: false,
-                            targets: { browsers: ['> 5%', 'Explorer 11'] },
+                            targets: { browsers: ['IE 11'] },
                             // useBuiltIns: 'usage', // 7beta not working properly
                             // debug: true
                         }]
