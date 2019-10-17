@@ -19,6 +19,7 @@ const js = ([config]) => each(['*.js', '*.ts'], { cwd: config.build.jsDir }, ({ 
                 "baseUrl": ".",
                 "resolveJsonModule": true,
                 "moduleResolution": "node",
+                "downlevelIteration": true,
                 "target": config.build.legacy.test(file) ? "es5" : "esnext",
                 "module": "esnext",
                 "lib": ["esnext", "dom", "DOM.Iterable", "ScriptHost"],
