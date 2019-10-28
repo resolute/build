@@ -37,11 +37,13 @@ const js = ([config]) => each(['*.js', '*.ts'], { cwd: config.build.jsDir }, ({ 
         ],
 
       }),
+      // @ts-ignore not sure why this is acting up
       resolve({
         mainFields: ['module', 'main', 'main:jsnext'],
         browser: true,
         preferBuiltins: false,
       }),
+      // @ts-ignore not sure why this is acting up
       commonjs(),
       ...(config.build.legacy.test(file) ? [
         babel({
