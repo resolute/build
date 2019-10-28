@@ -1,135 +1,135 @@
 {
-    "name": "@resolute/build",
-    "version": "1.0.9",
-    "description": "Build process",
-    "bin": {
-        "build": "bin/build"
+  "name": "@resolute/build",
+  "version": "1.0.9",
+  "description": "Build process",
+  "bin": {
+    "build": "bin/build"
+  },
+  "main": "./",
+  "types": "./",
+  "files": [
+    "*.js",
+    "*.d.ts"
+  ],
+  "scripts": {
+    "build": "npm run clean && npx tsc && npx prettier --write *.js *.d.ts && (npx eslint --fix *.js > /dev/null 2>&1; true)",
+    "release": "npx np",
+    "prepublishOnly": "npm test && npm run build",
+    "clean": "npx del-cli *.js *.js.map *.d.ts",
+    "test": "echo TODO"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/resolute/build.git"
+  },
+  "bugs": {
+    "url": "https://github.com/resolute/build/issues"
+  },
+  "homepage": "https://github.com/resolute/build",
+  "author": "Resolute Digital",
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "dependencies": {
+    "@babel/core": "*",
+    "@babel/polyfill": "*",
+    "@babel/preset-env": "*",
+    "autoprefixer": "*",
+    "builtin-modules": "*",
+    "core-js": "*",
+    "css-mqpacker": "*",
+    "esm": "*",
+    "fast-glob": "*",
+    "htmlmin": "*",
+    "juice": "*",
+    "marked": "*",
+    "marko": "*",
+    "node-sass": "*",
+    "postcss": "*",
+    "postcss-sorting": "*",
+    "rollup": "*",
+    "rollup-plugin-babel": "*",
+    "rollup-plugin-commonjs": "*",
+    "rollup-plugin-json": "*",
+    "rollup-plugin-node-resolve": "*",
+    "rollup-plugin-sourcemaps": "*",
+    "rollup-plugin-typescript": "*",
+    "sane": "*",
+    "svgo": "*",
+    "terser": "*",
+    "ts-node": "*",
+    "tslib": "*",
+    "typescript": "*"
+  },
+  "devDependencies": {
+    "@types/autoprefixer": "*",
+    "@types/marko": "*",
+    "@types/node-sass": "*",
+    "@types/node": "*",
+    "@types/rollup-plugin-json": "*",
+    "@types/sane": "*",
+    "@types/svgo": "*",
+    "@types/terser": "*",
+    "@typescript-eslint/eslint-plugin": "*",
+    "@typescript-eslint/parser": "*",
+    "eslint": "*",
+    "eslint-config-airbnb-base": "*",
+    "eslint-plugin-import": "*",
+    "np": "*"
+  },
+  "keywords": [
+    "build tool",
+    "minify",
+    "static site generator"
+  ],
+  "prettier": {
+    "endOfLine": "lf",
+    "singleQuote": true
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "eslintConfig": {
+    "env": {
+      "commonjs": true,
+      "es6": true,
+      "node": true
     },
-    "main": "./",
-    "types": "./",
-    "files": [
-        "*.js",
-        "*.d.ts"
+    "extends": [
+      "airbnb-base"
     ],
-    "scripts": {
-        "build": "npm run clean && npx tsc && npx prettier --write *.js *.d.ts && (npx eslint --fix *.js > /dev/null 2>&1; true)",
-        "release": "npx np",
-        "prepublishOnly": "npm test && npm run build",
-        "clean": "npx del-cli *.js *.js.map *.d.ts",
-        "test": "echo TODO"
+    "globals": {
+      "Atomics": "readonly",
+      "SharedArrayBuffer": "readonly"
     },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/resolute/build.git"
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "ecmaVersion": 2018
     },
-    "bugs": {
-        "url": "https://github.com/resolute/build/issues"
-    },
-    "homepage": "https://github.com/resolute/build",
-    "author": "Resolute Digital",
-    "engines": {
-        "node": ">=10.0.0"
-    },
-    "dependencies": {
-        "@babel/core": "*",
-        "@babel/polyfill": "*",
-        "@babel/preset-env": "*",
-        "autoprefixer": "*",
-        "builtin-modules": "*",
-        "core-js": "*",
-        "css-mqpacker": "*",
-        "esm": "*",
-        "fast-glob": "*",
-        "htmlmin": "*",
-        "juice": "*",
-        "marked": "*",
-        "marko": "*",
-        "node-sass": "*",
-        "postcss": "*",
-        "postcss-sorting": "*",
-        "rollup": "*",
-        "rollup-plugin-babel": "*",
-        "rollup-plugin-commonjs": "*",
-        "rollup-plugin-json": "*",
-        "rollup-plugin-node-resolve": "*",
-        "rollup-plugin-sourcemaps": "*",
-        "rollup-plugin-typescript": "*",
-        "sane": "*",
-        "svgo": "*",
-        "terser": "*",
-        "ts-node": "*",
-        "tslib": "*",
-        "typescript": "*"
-    },
-    "devDependencies": {
-        "@types/autoprefixer": "*",
-        "@types/marko": "*",
-        "@types/node-sass": "*",
-        "@types/node": "*",
-        "@types/rollup-plugin-json": "*",
-        "@types/sane": "*",
-        "@types/svgo": "*",
-        "@types/terser": "*",
-        "@typescript-eslint/eslint-plugin": "*",
-        "@typescript-eslint/parser": "*",
-        "eslint": "*",
-        "eslint-config-airbnb-base": "*",
-        "eslint-plugin-import": "*",
-        "np": "*"
-    },
-    "keywords": [
-        "build tool",
-        "minify",
-        "static site generator"
+    "plugins": [
+      "@typescript-eslint"
     ],
-    "prettier": {
-        "endOfLine": "lf",
-        "singleQuote": true
-    },
-    "publishConfig": {
-        "access": "public"
-    },
-    "eslintConfig": {
-        "env": {
-            "commonjs": true,
-            "es6": true,
-            "node": true
-        },
-        "extends": [
-            "airbnb-base"
-        ],
-        "globals": {
-            "Atomics": "readonly",
-            "SharedArrayBuffer": "readonly"
-        },
-        "parser": "@typescript-eslint/parser",
-        "parserOptions": {
-            "ecmaVersion": 2018
-        },
-        "plugins": [
-            "@typescript-eslint"
-        ],
-        "rules": {
-            "implicit-arrow-linebreak": "off",
-            "import/no-unresolved": "off",
-            "lines-between-class-members": "off",
-            "no-bitwise": "off",
-            "no-plusplus": "off",
-            "no-shadow": "off",
-            "no-unused-vars": "off",
-            "no-use-before-define": "off",
-            "operator-linebreak": "off",
-            "spaced-comment": [
-                "error",
-                "always",
-                {
-                    "exceptions": [
-                        "-",
-                        "+"
-                    ]
-                }
-            ]
+    "rules": {
+      "implicit-arrow-linebreak": "off",
+      "import/no-unresolved": "off",
+      "lines-between-class-members": "off",
+      "no-bitwise": "off",
+      "no-plusplus": "off",
+      "no-shadow": "off",
+      "no-unused-vars": "off",
+      "no-use-before-define": "off",
+      "operator-linebreak": "off",
+      "spaced-comment": [
+        "error",
+        "always",
+        {
+          "exceptions": [
+            "-",
+            "+"
+          ]
         }
-    },
-    "license": "ISC"
+      ]
+    }
+  },
+  "license": "ISC"
 }
