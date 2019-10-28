@@ -1,19 +1,19 @@
 {
     "compilerOptions": {
         "declaration": true,
-        "esModuleInterop": true,
         "module": "commonjs",
         "moduleResolution": "node",
         "noImplicitAny": false,
-        "outDir": "./lib",
+        "outDir": ".",
         "pretty": true,
         "resolveJsonModule": true,
-        "sourceMap": true,
+        "sourceMap": false,
         "strict": true,
-        "target": "esnext"
+        "stripInternal": true,
+        "target": "es2018"
     },
-    "exclude": [
-        "lib",
-        "test"
-    ]
+    "include": [
+        "src"
+    ],
+    "exclude": []
 }

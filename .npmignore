@@ -1,2 +1,4 @@
-*.ts
+*.js.map
+/coverage
 /src
+/test

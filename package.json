@@ -1,16 +1,22 @@
 {
     "name": "@resolute/build",
-    "version": "1.0.8",
+    "version": "1.0.9",
     "description": "Build process",
-    "main": "lib",
-    "types": "lib",
     "bin": {
         "build": "bin/build"
     },
+    "main": "./",
+    "types": "./",
+    "files": [
+        "*.js",
+        "*.d.ts"
+    ],
     "scripts": {
-        "build": "npx tsc",
+        "build": "npm run clean && npx tsc && npx prettier --write *.js *.d.ts && (npx eslint --fix *.js > /dev/null 2>&1; true)",
         "release": "npx np",
-        "prepublishOnly": "npm run build"
+        "prepublishOnly": "npm test && npm run build",
+        "clean": "npx del-cli *.js *.js.map *.d.ts",
+        "test": "echo TODO"
     },
     "repository": {
         "type": "git",
@@ -31,6 +37,7 @@
         "autoprefixer": "*",
         "builtin-modules": "*",
         "core-js": "*",
+        "css-mqpacker": "*",
         "esm": "*",
         "fast-glob": "*",
         "htmlmin": "*",
@@ -39,20 +46,20 @@
         "marko": "*",
         "node-sass": "*",
         "postcss": "*",
+        "postcss-sorting": "*",
+        "rollup": "*",
         "rollup-plugin-babel": "*",
         "rollup-plugin-commonjs": "*",
         "rollup-plugin-json": "*",
         "rollup-plugin-node-resolve": "*",
         "rollup-plugin-sourcemaps": "*",
         "rollup-plugin-typescript": "*",
-        "rollup": "*",
         "sane": "*",
         "svgo": "*",
+        "terser": "*",
         "ts-node": "*",
         "tslib": "*",
-        "typescript": "*",
-        "uglify-es": "*",
-        "whatwg-fetch": "*"
+        "typescript": "*"
     },
     "devDependencies": {
         "@types/autoprefixer": "*",
@@ -62,19 +69,67 @@
         "@types/rollup-plugin-json": "*",
         "@types/sane": "*",
         "@types/svgo": "*",
-        "@types/uglify-es": "*",
+        "@types/terser": "*",
+        "@typescript-eslint/eslint-plugin": "*",
+        "@typescript-eslint/parser": "*",
+        "eslint": "*",
+        "eslint-config-airbnb-base": "*",
+        "eslint-plugin-import": "*",
         "np": "*"
     },
-    "files": [
-        "lib"
-    ],
     "keywords": [
         "build tool",
         "minify",
         "static site generator"
     ],
+    "prettier": {
+        "endOfLine": "lf",
+        "singleQuote": true
+    },
     "publishConfig": {
         "access": "public"
+    },
+    "eslintConfig": {
+        "env": {
+            "commonjs": true,
+            "es6": true,
+            "node": true
+        },
+        "extends": [
+            "airbnb-base"
+        ],
+        "globals": {
+            "Atomics": "readonly",
+            "SharedArrayBuffer": "readonly"
+        },
+        "parser": "@typescript-eslint/parser",
+        "parserOptions": {
+            "ecmaVersion": 2018
+        },
+        "plugins": [
+            "@typescript-eslint"
+        ],
+        "rules": {
+            "implicit-arrow-linebreak": "off",
+            "import/no-unresolved": "off",
+            "lines-between-class-members": "off",
+            "no-bitwise": "off",
+            "no-plusplus": "off",
+            "no-shadow": "off",
+            "no-unused-vars": "off",
+            "no-use-before-define": "off",
+            "operator-linebreak": "off",
+            "spaced-comment": [
+                "error",
+                "always",
+                {
+                    "exceptions": [
+                        "-",
+                        "+"
+                    ]
+                }
+            ]
+        }
     },
     "license": "ISC"
 }
