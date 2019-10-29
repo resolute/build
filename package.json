@@ -1,6 +1,6 @@
 {
   "name": "@resolute/build",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Build process",
   "bin": {
     "build": "bin/build"
