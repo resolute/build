@@ -15,7 +15,7 @@ const svg = ([config]) => each('**/*.svg', { cwd: config.build.svgDir }, ({ file
     { removeDimensions: true },
   ],
 })
-  .optimize(content)
+  .optimize(content, {}) // info param required by svgo@1.3.1
   .then((res) => [
     file.toString(),
     {
