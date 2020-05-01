@@ -21,7 +21,7 @@ const html = ([config, tpl, assets, svg]) => Promise.all(tpl)
       )
         .then(() =>
           writeFile(outputFilename,
-            template.render({ ...config, ...assets, svg })));
+            template.render({ ...config, ...assets, svg }).getOutput()));
     })));
 
 export default html;
