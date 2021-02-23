@@ -9,6 +9,7 @@ const html = ([config, tpl, assets, svg]) => Promise.all(tpl)
   .then((tpl) => Promise.all(tpl
     // @ts-ignore
     .filter(({ file }) => !/components/.test(file) && config.build.html.test(file))
+    // @ts-ignore
     .map(({ file, template }) => {
       const outputFilename = `${config.build.htmlDir}/${
         file

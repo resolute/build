@@ -43,7 +43,7 @@
     "htmlmin": "*",
     "juice": "*",
     "marked": "*",
-    "marko": "*",
+    "marko": "~4",
     "node-sass": "*",
     "postcss": "*",
     "postcss-sorting": "*",
@@ -55,8 +55,8 @@
     "rollup-plugin-sourcemaps": "*",
     "rollup-plugin-typescript": "*",
     "sane": "*",
-    "svgo": "*",
-    "terser": "*",
+    "svgo": "~1",
+    "terser": "^4.8.0",
     "ts-node": "*",
     "tslib": "*",
     "typescript": "*"
@@ -64,18 +64,20 @@
   "devDependencies": {
     "@types/autoprefixer": "*",
     "@types/marko": "*",
-    "@types/node-sass": "*",
     "@types/node": "*",
+    "@types/node-sass": "*",
     "@types/rollup-plugin-json": "*",
     "@types/sane": "*",
     "@types/svgo": "*",
     "@types/terser": "*",
     "@typescript-eslint/eslint-plugin": "*",
     "@typescript-eslint/parser": "*",
+    "del-cli": "*",
     "eslint": "*",
     "eslint-config-airbnb-base": "*",
     "eslint-plugin-import": "*",
-    "np": "*"
+    "np": "*",
+    "prettier": "*"
   },
   "keywords": [
     "build tool",
